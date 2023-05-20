@@ -1,0 +1,8 @@
+﻿using NHLPlayerStatistics.Models;
+
+namespace NHLPlayerStatistics.Interfaces;
+public interface INHLApiService
+{
+    public Task<PlayerStats> GetPlayerStatistics(int playerId);
+}
+
