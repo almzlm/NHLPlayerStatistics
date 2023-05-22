@@ -2,25 +2,26 @@
 using NHLPlayerStatistics.Interfaces;
 using NHLPlayerStatistics.Models;
 
-namespace NHLPlayerStatistics.Controllers
+namespace NHLPlayerStatistics.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class PlayerController : Controller
 {
-    public class PlayerController : Controller
+
+    #region dependency injection
+    IStatisticsFetcherService _statsFetcher;
+    #endregion
+
+    public PlayerController(IStatisticsFetcherService statsFetcher) 
     {
+        _statsFetcher = statsFetcher;
+    }   
 
-        #region dependency injection
-        IStatisticsFetcherService _statsFetcher;
-        #endregion
+    [HttpGet("{playerId}")]
+    public async Task<JsonResult> GetPlayerStatistics(int playerId)
+    {
+        return Json(await _statsFetcher.PlayerCareerStatistics(playerId));
 
-        public PlayerController(IStatisticsFetcherService statsFetcher) 
-        {
-            _statsFetcher = statsFetcher;
-        }   
-
-        [Route("Player/{playerId}")]
-        public JsonResult Get(int playerId)
-        {
-            var result = _statsFetcher.PlayerCareerStatistics(playerId);
-            return Json(result);
-        }
     }
 }

@@ -3,6 +3,6 @@
 namespace NHLPlayerStatistics.Interfaces;
 public interface INHLApiService
 {
-    public Task<PlayerStats> GetPlayerStatistics(int playerId);
+    public Task<PlayerStats> GetPlayerStatisticsAsync(int playerId);
 }
 

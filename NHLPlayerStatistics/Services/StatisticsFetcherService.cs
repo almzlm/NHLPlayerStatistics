@@ -15,10 +15,10 @@ public class StatisticsFetcherService : IStatisticsFetcherService
         _nhlApiService = nhlApiService;
     }
 
-    public PlayerStats PlayerCareerStatistics(int playerId)
+    public async Task<PlayerStats> PlayerCareerStatistics(int playerId)
     {
         //Get the stats from client
-        return _nhlApiService.GetPlayerStatistics(playerId).Result;
+        return await _nhlApiService.GetPlayerStatisticsAsync(playerId);
     }
 }
 

@@ -9,6 +9,6 @@ namespace NHLPlayerStatistics.Interfaces;
 
 public interface IStatisticsFetcherService
 {
-    PlayerStats PlayerCareerStatistics(int playerId);
+    Task<PlayerStats> PlayerCareerStatistics(int playerId);
 }
 
